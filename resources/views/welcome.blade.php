@@ -31,6 +31,7 @@
                     <a href="#blog" style="font-size: 20px">博客</a>
                 </div>
             </div>
+            <div class="section">
                 <div class="container">
                     <div id="team" style="height: 60%">
                         <h2 style="color: #FFFFFF"><u>团队介绍</u></h2>

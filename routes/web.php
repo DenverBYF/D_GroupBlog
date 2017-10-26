@@ -15,7 +15,9 @@ Route::get('/', function () {
 	$group = \App\Group::first();
 	$user = \App\User::take(8)->skip(1)->get();
 	$posts = \App\Posts::orderBy('id','desc')->paginate(5);
-    return view('welcome',['group'=>$group,'user'=>$user,'posts'=>$posts]);
+	$hot_posts = \App\Posts::orderBy('view','desc')->take(8)->get();
+	$tag = \App\tag::all();
+    return view('welcome',['group'=>$group,'user'=>$user,'posts'=>$posts,'hot_posts'=>$hot_posts,'tag'=>$tag]);
 });
 
 Auth::routes();
@@ -23,6 +25,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('article/{id}',function ($id){
 	$post = \App\Posts::findOrFail($id);
+	$post->view +=1;
+	$post->save();
 	return view('article',['post'=>$post]);
 })->name('article');
 

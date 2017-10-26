@@ -31,7 +31,6 @@
                     <a href="#blog" style="font-size: 20px">博客</a>
                 </div>
             </div>
-            <div class="section">
                 <div class="container">
                     <div id="team" style="height: 60%">
                         <h2 style="color: #FFFFFF"><u>团队介绍</u></h2>
@@ -56,7 +55,7 @@
             <div class="section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 col-lg-8 col-sm-8">
+                        <div class="col-md-7 col-lg-7 col-sm-7">
                             <h2 style="color: #FFFFFF" >文章列表</h2>
                             <ol>
                                 @foreach($posts as $each_post)
@@ -77,8 +76,29 @@
                                 @endforeach
                             </ol>
                         </div>
+
+                        <div class="col-sm-4 col-md-4 col-lg-4 ">
+                            <h3 style="color: #FFFFFF">热门文章</h3>
+                            <ul id="hot_list" style="padding: 0px 0px 0px 0px">
+                                @foreach($hot_posts as $each_post)
+                                    <li style="padding: 5px">
+                                        <div class="col-sm-10 col-md-10 col-lg-10">
+                                            <a href="{{ route('article',['id'=>$each_post->id]) }}" style="font-size: 15px;">{{ $each_post->title }}</a>&nbsp;&nbsp;
+                                        </div>
+                                        <span class="badge">{{ $each_post->view }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <h3 style="color: #FFFFFF">标签汇总</h3>
+                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                @foreach($tag as $each_tag)
+                                    <a href="#"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
-                    {{--{{ $posts->links() }}--}}
                 </div>
             </div>
         </div>

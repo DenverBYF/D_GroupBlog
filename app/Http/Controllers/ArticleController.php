@@ -161,8 +161,6 @@ class ArticleController extends Controller
 		$article->delete();
 		if(Posts::where('tag_id','=',$tag_id)->count() == 0){
 			tag::find($tag_id)->delete();
-		}else{
-
 		}
 		return response("ok",200);
 	}

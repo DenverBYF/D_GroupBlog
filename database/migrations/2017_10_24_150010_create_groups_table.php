@@ -17,7 +17,7 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
 			$table->string('name')->default('Group');
 			$table->string('desc')->nullable();
-			$table->string('url')->default('default.png');
+			$table->string('url')->nullable();
 			$table->string('email')->nullable();
             $table->timestamps();
         });

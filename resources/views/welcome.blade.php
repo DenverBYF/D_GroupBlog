@@ -25,7 +25,7 @@
         <div id="dowebok">
             <div class="section">
                 <div style="text-align:center;">
-                    <img src="{{ empty($group->url)?"../storage/app/public/group/default.jpg":"../storage/app/public/group/".$group->url }}" class="img-circle" >
+                    <img src="{{ empty($group->url)?asset("../storage/app/public/group/default.jpg"):asset("../storage/app/public/group/")."/".$group->url }}" class="img-circle" >
                     <h3 style="text-align:center; color: #FFFFFF">{{ $group->name }}</h3>
                     <a href="#about" style="font-size: 20px">关于</a>&nbsp;&nbsp;| &nbsp;
                     <a href="#blog" style="font-size: 20px">博客</a>
@@ -45,7 +45,7 @@
                             <div class="col-sm-3 col-md-3 col-lg-3">
                                     <p style="font-size: 18px">{{ $each_user->name }}</p>
                                     <figure style="width: 80px;height: 80px">
-                                        <img class="img-circle img-responsive"  src="{{ empty($each_user->url)?"../storage/app/public/user/default.jpg":"../storage/app/public/user/".$each_user->url }}" data-toggle="tooltip" data-placement="top" title="{{ empty($each_user->sign)?"":$each_user->sign }}" >
+                                        <img class="img-circle img-responsive"  src="{{ empty($each_user->url)?asset('../storage/app/public/user/default.jpg'):asset("../storage/app/public/user/")."/".$each_user->url }}" data-toggle="tooltip" data-placement="top" title="{{ empty($each_user->sign)?"":$each_user->sign }}" >
                                     </figure>
                                     <p style="font-size: 15px">{{ empty($each_user->key_word)?"":$each_user->key_word }}</p>
                             </div>
@@ -64,7 +64,7 @@
                                         <h3>
                                             <a href="{{ route('article',['id'=>$each_post->id]) }}" target="_blank">{{ $each_post->title }}</a>&nbsp;&nbsp;
                                         </h3>
-                                        <img class="img-circle img-responsive" style="width: 35px;height: 35px" src="{{ empty($each_post->user->url)?"../storage/app/public/user/default.jpg":"../storage/app/public/user/".$each_post->user->url }}" >
+                                        <img class="img-circle img-responsive" style="width: 35px;height: 35px" src="{{ empty($each_post->user->url)?asset("../storage/app/public/user/default.jpg"):asset("../storage/app/public/user/")."/".$each_post->user->url }}" >
                                         <p style="font-size: 10px">{{ $each_post->user->name }}</p>
                                         <p>
                                             <span>
@@ -142,7 +142,6 @@
             $('#dowebok').fullpage({
                 anchors: ['index','about', 'blog'],
                 resize: true,
-                scrollOverflow: true,
             });
         });
     </script>

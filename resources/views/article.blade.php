@@ -16,7 +16,7 @@
             float:left;height:10px;
         }
     </style>
-    <title>Document</title>
+    <title>{{ $post->title }}</title>
 </head>
 <body>
     <div class="container">
@@ -39,7 +39,7 @@
                         <h5>文章作者</h5>
                     </div>
                     <div class="panel-body text-center">
-                        <img class="img-circle" style="width: 55px;height: 55px" src="{{ empty($post->user->url)?"../../storage/app/public/user/default.jpg":"../../storage/app/public/user/".$post->user->url }}">
+                        <img class="img-circle" style="width: 55px;height: 55px" src="{{ empty($post->user->url)?asset("../storage/app/public/user/default.jpg"):asset("../storage/app/public/user/")."/".$post->user->url }}">
                         <p style="color: #0a001f;font-size: 15px">{{ $post->user->name }}</p>
                         <p style="color: #0a001f;font-size: 15px">{{ empty($post->user->sign)?"":$post->user->sign }}</p>
                         <p>
@@ -54,16 +54,18 @@
                     <div class="panel-heading text-center">
                         <h5>作者文章</h5>
                     </div>
-                    <ol>
+                    <ul>
                         @foreach($post->user->posts as $each_post)
                             <li>
                                 <div class="col-sm-10 col-md-10 col-lg-10">
-                                    <a class="post_a" href="{{ route('article',['id'=>$each_post->id]) }}" style="font-size: 5px;">{{ $each_post->title }}</a>&nbsp;&nbsp;
+                                    <a class="post_a" href="{{ route('article',['id'=>$each_post->id]) }}" style="font-size: 10px;" data-toggle="tooltip" title="{{ $each_post->title }}">
+                                        {{ mb_substr($each_post->title,0,12,'utf-8')."..." }}
+                                    </a>&nbsp;&nbsp;
                                 </div>
                                 <span class="badge">{{ $each_post->view }}</span>
                             </li>
                         @endforeach
-                    </ol>
+                    </ul>
                 </div>
             </div>
     </div>

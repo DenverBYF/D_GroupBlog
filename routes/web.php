@@ -14,7 +14,7 @@
 Route::get('/', function () {
 	$group = \App\Group::first();
 	$user = \App\User::take(8)->skip(1)->get();
-	$posts = \App\Posts::orderBy('id','desc')->paginate(5);
+	$posts = \App\Posts::orderBy('id','desc')->paginate(4);
 	$hot_posts = \App\Posts::orderBy('view','desc')->take(8)->get();
 	$tag = \App\tag::all();
     return view('welcome',['group'=>$group,'user'=>$user,'posts'=>$posts,'hot_posts'=>$hot_posts,'tag'=>$tag]);

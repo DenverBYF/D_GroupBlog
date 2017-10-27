@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="section">
+            <div class="section {{ isset($_GET['page'])?"active":"" }}">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-7 col-lg-7 col-sm-7">
@@ -76,6 +76,25 @@
                                     </li>
                                 @endforeach
                             </ol>
+                            <ul>
+                                @if ($posts->hasPages())
+                                    <ul class="pagination">
+                                        {{-- Previous Page Link --}}
+                                        @if ($posts->onFirstPage())
+                                            <li class="disabled"><span>@lang('pagination.previous')</span></li>
+                                        @else
+                                            <li><a href="{{ $posts->previousPageUrl()."#blog" }}" rel="prev">@lang('pagination.previous')</a></li>
+                                        @endif
+
+                                        {{-- Next Page Link --}}
+                                        @if ($posts->hasMorePages())
+                                            <li><a href="{{ $posts->nextPageUrl()."#blog" }}" rel="next">@lang('pagination.next')</a></li>
+                                        @else
+                                            <li class="disabled"><span>@lang('pagination.next')</span></li>
+                                        @endif
+                                    </ul>
+                                @endif
+                            </ul>
                         </div>
 
                         <div class="col-sm-4 col-md-4 col-lg-4 ">
@@ -111,6 +130,8 @@
         $(function(){
             $('#dowebok').fullpage({
                 anchors: ['index','about', 'blog'],
+                resize: true,
+                scrollOverflow: true,
             });
         });
     </script>

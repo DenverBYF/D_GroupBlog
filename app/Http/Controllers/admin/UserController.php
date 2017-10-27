@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\invite;
 use App\Posts;
+use App\tag;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,6 +95,9 @@ class UserController extends Controller
 		$user = User::findOrFail($id);
 		$posts = $user->posts;
 		foreach ($posts as $post){
+			if(Posts::where('tag_id','=',$post->tag_id)->count() == 1){
+				tag::destroy($post->tag_id);
+			}
 			$post->delete();
 		}
 		$user->delete();

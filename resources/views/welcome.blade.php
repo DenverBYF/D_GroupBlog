@@ -62,7 +62,7 @@
                                 @foreach($posts as $each_post)
                                     <li>
                                         <h3>
-                                            <a href="{{ route('article',['id'=>$each_post->id]) }}" >{{ $each_post->title }}</a>&nbsp;&nbsp;
+                                            <a href="{{ route('article',['id'=>$each_post->id]) }}" target="_blank">{{ $each_post->title }}</a>&nbsp;&nbsp;
                                         </h3>
                                         <img class="img-circle img-responsive" style="width: 35px;height: 35px" src="{{ empty($each_post->user->url)?"../storage/app/public/user/default.jpg":"../storage/app/public/user/".$each_post->user->url }}" >
                                         <p style="font-size: 10px">{{ $each_post->user->name }}</p>
@@ -103,7 +103,7 @@
                                 @foreach($hot_posts as $each_post)
                                     <li style="padding: 5px">
                                         <div class="col-sm-10 col-md-10 col-lg-10">
-                                            <a href="{{ route('article',['id'=>$each_post->id]) }}" style="font-size: 15px;">{{ $each_post->title }}</a>&nbsp;&nbsp;
+                                            <a href="{{ route('article',['id'=>$each_post->id]) }}" style="font-size: 15px;" target="_blank">{{ $each_post->title }}</a>&nbsp;&nbsp;
                                         </div>
                                         <span class="badge">{{ $each_post->view }}</span>
                                     </li>

@@ -25,9 +25,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('article/{id}',function ($id){
 	$post = \App\Posts::findOrFail($id);
+	$user = $post->user;
 	$post->view +=1;
 	$post->save();
-	return view('article',['post'=>$post]);
+	return view('article',['post'=>$post,'user'=>$user]);
 })->name('article');
 
 Route::prefix('admin')->middleware(['auth','role:admin'])->group(function (){

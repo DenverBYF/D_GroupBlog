@@ -19,7 +19,7 @@
                 <tbody>
                     @foreach($posts as $each_post)
                         <tr>
-                            <th><a href="{{ route("article.show",['id'=>$each_post->id]) }}">{{ $each_post->title }}</a></th>
+                            <th><a href="{{ route("article",['id'=>$each_post->id]) }}">{{ $each_post->title }}</a></th>
                             <th><a href="{{ route("tags.show",['id'=>$each_post->tag->id]) }}">{{ $each_post->tag->name }}</a></th>
                         </tr>
                     @endforeach

@@ -113,7 +113,7 @@
                             <h3 style="color: #FFFFFF">标签汇总</h3>
                             <div class="col-sm-10 col-md-10 col-lg-10">
                                 @foreach($tag as $each_tag)
-                                    <a href="#"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>
+                                    <a href="#"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>&nbsp;&nbsp;&nbsp;
                                 @endforeach
                             </div>
                         </div>

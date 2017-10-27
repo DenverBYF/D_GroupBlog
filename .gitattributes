@@ -1,0 +1,5 @@
+* text=auto
+*.css linguist-language=PHP
+*.scss linguist-language=PHP
+*.js linguist-language=PHP
+CHANGELOG.md export-ignore

@@ -27,10 +27,10 @@
                         <tr id="{{ $each_user->id }}">
                             <th><a href="{{ route("users.show",['id'=>$each_user->id]) }}">{{ $each_user->name }}</a></th>
                             <th>{{ $each_user->email }}</th>
-                            @if($each_user->getRoleNames()[0]=='admin')
-                                <th><p class="text-danger">{{ $each_user->getRoleNames()[0] }}</p></th>
-                            @elseif($each_user->getRoleNames()[0]=='editor')
-                                <th>{{ $each_user->getRoleNames()[0] }}</th>
+                            @if($each_user->hasRole('admin'))
+                                <th><p class="text-danger">admin</p></th>
+                            @else
+                                <th>editor</th>
                             @endif
                             <th><button type="button" class="btn btn-danger" id="{{ $each_user->id }}" onclick="remove(this.id)">删除该用户</button> </th>
                         </tr>

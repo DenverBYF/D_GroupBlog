@@ -96,7 +96,6 @@
                                 @endif
                             </ul>
                         </div>
-
                         <div class="col-sm-4 col-md-4 col-lg-4 ">
                             <h3 style="color: #FFFFFF">热门文章</h3>
                             <ul id="hot_list" style="padding: 0px 0px 0px 0px">
@@ -117,6 +116,18 @@
                                     <a href="#"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>
                                 @endforeach
                             </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 ">
+                            <h3 style="color: #FFFFFF">友情链接</h3>
+                            <ul id="link_list" style="padding: 0px 0px 0px 0px">
+                                @foreach($link as $each_link)
+                                    <li style="padding: 5px">
+                                        <div class="col-sm-10 col-md-10 col-lg-10">
+                                            <a href="{{ $each_link->href }}" style="font-size: 15px;" target="_blank">{{ $each_link->name }}</a>&nbsp;&nbsp;
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>

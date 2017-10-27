@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\link;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -17,7 +18,8 @@ class GroupController extends Controller
     {
         //
 		$group = Group::first();
-		return view('admin.group',['group'=>$group]);
+		$link = link::all();
+		return view('admin.group',['group'=>$group,'link'=>$link]);
     }
 
     /**

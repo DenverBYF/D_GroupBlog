@@ -17,7 +17,8 @@ Route::get('/', function () {
 	$posts = \App\Posts::orderBy('id','desc')->paginate(4);
 	$hot_posts = \App\Posts::orderBy('view','desc')->take(8)->get();
 	$tag = \App\tag::all();
-    return view('welcome',['group'=>$group,'user'=>$user,'posts'=>$posts,'hot_posts'=>$hot_posts,'tag'=>$tag]);
+	$link = \App\link::all();
+    return view('welcome',['group'=>$group,'user'=>$user,'posts'=>$posts,'hot_posts'=>$hot_posts,'tag'=>$tag,'link'=>$link]);
 });
 
 Auth::routes();
@@ -37,6 +38,7 @@ Route::prefix('admin')->middleware(['auth','role:admin'])->group(function (){
 	Route::resource('tags','admin\TagController');
 	Route::get('code','admin\UserController@create_code')->name('code');
 	Route::resource('group','GroupController');
+	Route::resource('link','LinkController');
 });
 
 Route::prefix('editor')->middleware(['auth'])->group(function (){

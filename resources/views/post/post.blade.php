@@ -36,7 +36,9 @@
 
                         <th>
                             <button id="{{ $each_post->id }}" class="btn-sm btn-danger" type="button" onclick="remove(this.id)">删除</button>
-                            @role('editor')
+                            @role('admin')
+
+                            @else
                                 <button id="{{ $each_post->id }}" class="btn-sm btn-success" type="button" onclick="edit(this.id)">编辑</button>
                             @endrole
                         </th>

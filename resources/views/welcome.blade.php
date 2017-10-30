@@ -55,16 +55,16 @@
             </div>
             <div class="section {{ (isset($_GET['page']) or !empty($tag_name))?"active":"" }} fp-auto-height-responsive">
                 <div class="container">
-                    <ul class="nav nav-pills">
-                        <li><a style="font-size: 18px" href="{{route('welcome')."?page=1"}}">{{ $group->name }}</a></li>
-                        @foreach($tag as $each_tag)
-                            <li><a style="font-size: 18px" href="{{ route('welcome')."/?tag_id=$each_tag->id" }}">{{ $each_tag->name }}</a></li>
-                            @if($loop->index == 4)
-                                @break
-                            @endif
-                        @endforeach
-                    </ul>
                     <div class="row">
+                        <ul class="nav nav-pills">
+                            <li><a style="font-size: 18px" href="{{route('welcome')."?page=1"}}">{{ $group->name }}</a></li>
+                            @foreach($tag as $each_tag)
+                                <li><a style="font-size: 18px" href="{{ route('welcome')."/?tag_id=$each_tag->id" }}">{{ $each_tag->name }}</a></li>
+                                @if($loop->index == 4)
+                                    @break
+                                @endif
+                            @endforeach
+                        </ul>
                         <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
                             <h2 style="color: #add8e6" >{{ empty($tag_name)?"文章列表":$tag_name }}</h2>
                             <ol>

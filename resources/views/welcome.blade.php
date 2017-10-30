@@ -58,7 +58,7 @@
                     <ul class="nav nav-pills">
                         <li><a style="font-size: 18px" href="{{route('welcome')."?page=1"}}">{{ $group->name }}</a></li>
                         @foreach($tag as $each_tag)
-                            <li><a style="font-size: 18px" href="{{ route('welcome',['tag'=>$each_tag->id]) }}">{{ $each_tag->name }}</a></li>
+                            <li><a style="font-size: 18px" href="{{ route('welcome')."/?tag_id=$each_tag->id" }}">{{ $each_tag->name }}</a></li>
                             @if($loop->index == 4)
                                 @break
                             @endif
@@ -122,7 +122,7 @@
                             <h3 style="color: #add8e6">标签汇总</h3>
                             <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10">
                                 @foreach($tag as $each_tag)
-                                    <a href="{{ route('welcome',['tag'=>$each_tag->id]) }}"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>&nbsp;&nbsp;&nbsp;
+                                    <a href="{{ route('welcome')."/?tag_id=$each_tag->id" }}"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>&nbsp;&nbsp;&nbsp;
                                 @endforeach
                             </div>
                         </div>

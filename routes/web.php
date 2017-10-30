@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/{tag?}', function ($tag_id=NULL) {
-	if(isset($tag_id)){
+Route::get('/', function () {
+	if(isset($_GET['tag_id'])){
+		$tag_id = $_GET['tag_id'];
 		$posts = \App\Posts::where('tag_id','=',$tag_id)->paginate(4);
-		$tag_name = \App\tag::find($tag_id)->name;
+		$this_tag = \App\tag::findOrFail($tag_id);
+		$tag_name = $this_tag->name;
 	}else{
 		$posts = \App\Posts::orderBy('id','desc')->paginate(4);
 		$tag_name = NULL;

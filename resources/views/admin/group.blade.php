@@ -72,7 +72,7 @@
                 </thead>
                 <tbody>
                     @foreach($link as $each_link)
-                        <tr>
+                        <tr id="{{ "link_".$each_link->id }}">
                             <th><a href="{{ $each_link->href }}">{{ $each_link->name }}</a></th>
                             <th><i class="fa fa-fw fa-remove" id="{{ $each_link->id }} " style="color: #990000" onclick="link_remove(this.id)"></i></th>
                         </tr>

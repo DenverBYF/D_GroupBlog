@@ -43,7 +43,7 @@
                         <h2 style="color: #FFFFFF"><u>团队部分成员</u></h2>
                         @foreach($user as $each_user)
                             <div class="col-sm-3 col-md-3 col-lg-3">
-                                    <p style="font-size: 18px">{{ $each_user->name }}</p>
+                                    <p style="font-size: 18px">&nbsp;&nbsp;{{ $each_user->name }}</p>
                                     <figure style="width: 80px;height: 80px">
                                         <img class="img-circle img-responsive"  src="{{ empty($each_user->url)?asset('../storage/app/public/user/default.jpg'):asset("../storage/app/public/user/")."/".$each_user->url }}" data-toggle="tooltip" data-placement="top" title="{{ empty($each_user->sign)?"":$each_user->sign }}" >
                                     </figure>
@@ -53,11 +53,20 @@
                     </div>
                 </div>
             </div>
-            <div class="section {{ isset($_GET['page'])?"active":"" }}">
+            <div class="section {{ (isset($_GET['page']) or !empty($tag_name))?"active":"" }}">
                 <div class="container">
+                    <ul class="nav nav-pills">
+                        <li><a style="font-size: 18px" href="{{route('welcome')."?page=1"}}">{{ $group->name }}</a></li>
+                        @foreach($tag as $each_tag)
+                            <li><a style="font-size: 18px" href="{{ route('welcome',['tag'=>$each_tag->id]) }}">{{ $each_tag->name }}</a></li>
+                            @if($loop->index == 4)
+                                @break
+                            @endif
+                        @endforeach
+                    </ul>
                     <div class="row">
                         <div class="col-md-7 col-lg-7 col-sm-7">
-                            <h2 style="color: #FFFFFF" >文章列表</h2>
+                            <h2 style="color: #add8e6" >{{ empty($tag_name)?"文章列表":$tag_name }}</h2>
                             <ol>
                                 @foreach($posts as $each_post)
                                     <li>
@@ -97,7 +106,7 @@
                             </ul>
                         </div>
                         <div class="col-sm-4 col-md-4 col-lg-4 ">
-                            <h3 style="color: #FFFFFF">热门文章</h3>
+                            <h3 style="color: #add8e6">热门文章</h3>
                             <ul id="hot_list" style="padding: 0px 0px 0px 0px">
                                 @foreach($hot_posts as $each_post)
                                     <li style="padding: 5px">
@@ -110,15 +119,15 @@
                             </ul>
                         </div>
                         <div class="col-sm-4 col-md-4 col-lg-4">
-                            <h3 style="color: #FFFFFF">标签汇总</h3>
+                            <h3 style="color: #add8e6">标签汇总</h3>
                             <div class="col-sm-10 col-md-10 col-lg-10">
                                 @foreach($tag as $each_tag)
-                                    <a href="#"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>&nbsp;&nbsp;&nbsp;
+                                    <a href="{{ route('welcome',['tag'=>$each_tag->id]) }}"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>&nbsp;&nbsp;&nbsp;
                                 @endforeach
                             </div>
                         </div>
                         <div class="col-sm-4 col-md-4 col-lg-4 ">
-                            <h3 style="color: #FFFFFF">友情链接</h3>
+                            <h3 style="color: #add8e6">友情链接</h3>
                             <ul id="link_list" style="padding: 0px 0px 0px 0px">
                                 @foreach($link as $each_link)
                                     <li style="padding: 5px">

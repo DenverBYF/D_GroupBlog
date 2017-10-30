@@ -42,7 +42,7 @@
                     <div id="member">
                         <h2 style="color: #FFFFFF"><u>团队部分成员</u></h2>
                         @foreach($user as $each_user)
-                            <div class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
                                     <p style="font-size: 18px">&nbsp;&nbsp;{{ $each_user->name }}</p>
                                     <figure style="width: 80px;height: 80px">
                                         <img class="img-circle img-responsive"  src="{{ empty($each_user->url)?asset('../storage/app/public/user/default.jpg'):asset("../storage/app/public/user/")."/".$each_user->url }}" data-toggle="tooltip" data-placement="top" title="{{ empty($each_user->sign)?"":$each_user->sign }}" >
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="section {{ (isset($_GET['page']) or !empty($tag_name))?"active":"" }}">
+            <div class="section {{ (isset($_GET['page']) or !empty($tag_name))?"active":"" }} fp-auto-height-responsive">
                 <div class="container">
                     <ul class="nav nav-pills">
                         <li><a style="font-size: 18px" href="{{route('welcome')."?page=1"}}">{{ $group->name }}</a></li>
@@ -65,7 +65,7 @@
                         @endforeach
                     </ul>
                     <div class="row">
-                        <div class="col-md-7 col-lg-7 col-sm-7">
+                        <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
                             <h2 style="color: #add8e6" >{{ empty($tag_name)?"文章列表":$tag_name }}</h2>
                             <ol>
                                 @foreach($posts as $each_post)
@@ -105,12 +105,12 @@
                                 @endif
                             </ul>
                         </div>
-                        <div class="col-sm-4 col-md-4 col-lg-4 ">
+                        <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
                             <h3 style="color: #add8e6">热门文章</h3>
                             <ul id="hot_list" style="padding: 0px 0px 0px 0px">
                                 @foreach($hot_posts as $each_post)
                                     <li style="padding: 5px">
-                                        <div class="col-sm-10 col-md-10 col-lg-10">
+                                        <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10">
                                             <a href="{{ route('article',['id'=>$each_post->id]) }}" style="font-size: 15px;" target="_blank">{{ $each_post->title }}</a>&nbsp;&nbsp;
                                         </div>
                                         <span class="badge">{{ $each_post->view }}</span>
@@ -118,20 +118,20 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
                             <h3 style="color: #add8e6">标签汇总</h3>
-                            <div class="col-sm-10 col-md-10 col-lg-10">
+                            <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10">
                                 @foreach($tag as $each_tag)
                                     <a href="{{ route('welcome',['tag'=>$each_tag->id]) }}"><span style="font-size: 15px">{{ $each_tag->name }}</span></a>&nbsp;&nbsp;&nbsp;
                                 @endforeach
                             </div>
                         </div>
-                        <div class="col-sm-4 col-md-4 col-lg-4 ">
+                        <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
                             <h3 style="color: #add8e6">友情链接</h3>
                             <ul id="link_list" style="padding: 0px 0px 0px 0px">
                                 @foreach($link as $each_link)
                                     <li style="padding: 5px">
-                                        <div class="col-sm-10 col-md-10 col-lg-10">
+                                        <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10">
                                             <a href="{{ $each_link->href }}" style="font-size: 15px;" target="_blank">{{ $each_link->name }}</a>&nbsp;&nbsp;
                                         </div>
                                     </li>
@@ -144,13 +144,16 @@
         </div>
     </body>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/scrolloverflow.min.js') }}"></script>
     <script src="{{ asset('js/jquery.fullpage.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
     <script type="text/javascript">
         $(function(){
             $('#dowebok').fullpage({
                 anchors: ['index','about', 'blog'],
                 resize: true,
+                scrollOverflow: true
             });
         });
     </script>

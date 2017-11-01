@@ -37,8 +37,11 @@ Route::get('article/{id}',function ($id){
 	$user = $post->user;
 	$post->view +=1;
 	$post->save();
-	return view('article',['post'=>$post,'user'=>$user]);
+	$tag = \App\tag::all();
+	$name = \App\Group::first()->name;
+	return view('article',['post'=>$post,'user'=>$user,'tag'=>$tag,'name'=>$name]);
 })->name('article');
+Route::resource('comment','CommentController');
 
 Route::prefix('admin')->middleware(['auth','role:admin'])->group(function (){
 	Route::resource('post','admin\PostController',['only'=>['index']]);

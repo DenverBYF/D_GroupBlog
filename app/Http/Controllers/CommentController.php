@@ -103,6 +103,14 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
+		$user = Auth::user();
+		if($user->hasRole('admin')){
+			Comment::destroy($id);
+			return response("ok",200);
+		}else{
+			return response("not admin",403);
+		}
+
     }
 
     private function valid($data)

@@ -42,7 +42,8 @@
                         <span>
                             <i class="glyphicon glyphicon-calendar"></i>&nbsp;{{ $post->created_at }}&nbsp;&nbsp;
                             <i class="glyphicon glyphicon-tag"></i>&nbsp;{{ $post->tag->name }}&nbsp;&nbsp;
-                            <i class="glyphicon glyphicon-eye-open"></i>&nbsp;{{ $post->view }}
+                            <i class="glyphicon glyphicon-eye-open"></i>&nbsp;{{ $post->view }}&nbsp;&nbsp;
+                            <i class="glyphicon glyphicon-comment"></i> {{$post->comment->count()}}
                         </span>
                     </p>
                     {!! $post->html_content !!}
@@ -96,7 +97,14 @@
                                         alt="媒体对象">
                             </a>
                             <div class="media-body " style="background-color: #FFFFFF">
-                                <h4 class="media-heading">{{ $each_comment->name }}</h4>
+                                <div class="col-md-10 col-sm-10 col-lg-10">
+                                    <h4 class="media-heading">{{ $each_comment->name }}</h4>
+                                </div>
+                                @role('admin')
+                                <div class="col-md-2 col-sm-2 col-lg-2">
+                                    <i class="glyphicon glyphicon-trash" id="{{ $each_comment->id }}" onclick="delete_comment(this.id)"></i>
+                                </div>
+                                @endrole
                                 <div class="markdown-body editormd-html-preview">
                                     {!! $each_comment->content !!}
                                 </div>
@@ -157,6 +165,23 @@
                 bootbox.alert("评论成功",function () {
                    window.location.reload();
                 })
+            },
+            error:function (e) {
+                bootbox.alert("评论失败",function () {
+                    console.log(e);
+                })
+            }
+        })
+    }
+    function delete_comment(id)
+    {
+        $.ajax({
+            url:'{{ route('comment.index') }}'+'/'+id,
+            type:"DELETE",
+            success:function (data) {
+                bootbox.alert("删除成功",function () {
+                    window.location.reload();
+                });
             },
             error:function (e) {
                 bootbox.alert("评论失败",function () {
